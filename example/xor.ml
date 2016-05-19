@@ -24,7 +24,7 @@ begin
     (* LEARN MY LITTLE BRAIN! *)
     for i = 0 to 500 do
         (* [0; 1] are the id of input neurons and [6] the id of the output neuron *)
-        train network trainset [0; 1] [6];
+        train network trainset [0; 1] [6] 0.8
     done;
 
     (* Get the neural network results of each combinaison of inputs. Remember that the result is a list of

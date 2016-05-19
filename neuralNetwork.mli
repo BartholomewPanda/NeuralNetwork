@@ -21,8 +21,8 @@ val feedforward : network -> int list -> float list -> (int * float) list
    arguments or if I will change to something like [feedforward network [(0, 1.0); (1, 13.52)]]. *)
 
 (** Train the neural network with the backpropagation algorithm *)
-val train : network -> (float list * float list) list -> int list -> int list -> unit
-(** [train [(inputs, expected outputs); ...] input_neuron_ids output_neurons_ids] will train the network
+val train : network -> (float list * float list) list -> int list -> int list -> float -> unit
+(** [train [(inputs, expected outputs); ...] input_neuron_ids output_neurons_ids 0.8] will train the network
    by using the backpropagation algorithm in order to aproximate the expected outputs.
    WARNING: the order of the inputs of the trainset and the ids of the input_neuron_ids is important!*)
 

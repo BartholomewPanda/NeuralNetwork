@@ -159,11 +159,11 @@ let backpropagation network outputs target =
     backpropagation (previous_layer network outputs)
 
 (** Update the weight of each neuron. *)
-let update network =
+let update network lr =
     let new_weight neuron id src =
         let weight = Hashtbl.find neuron.weights src in
         let output = (get_neuron network src).output in
-        weight +. (0.8 *. neuron.error *. Utils.sigmoid' neuron.output) *. output
+        weight +. (lr *. neuron.error *. Utils.sigmoid' neuron.output) *. output
     in
     let update_weights id neuron =
         List.iter (fun src -> Hashtbl.replace neuron.weights src (new_weight neuron id src)) neuron.inputs
@@ -172,13 +172,14 @@ let update network =
 
 (** Train a network by using the backpropagation algorithm.
    @param trainset a list of training example [(inputs, expected output); ...]
-   @in_layer a list of the input neurons ids
-   @out_layer a list of the output neurons ids *)
-let train network trainset in_layer out_layer =
+   @param in_layer a list of the input neurons ids
+   @param out_layer a list of the output neurons ids
+   @param lr the learning rate *)
+let train network trainset in_layer out_layer lr =
     let train (inputs, outputs) =
         ignore (feedforward network in_layer inputs);
         backpropagation network out_layer outputs;
-        update network
+        update network lr
     in
     List.iter train trainset
 
@@ -198,6 +199,7 @@ let add_neurons network nb =
 (** Helper function that make new layers and interconnects each layer.
    @param layers a int list
    @return a list of the id of each new neurons
+   TODO: the line above lies...
  *)
 let add_layers network layers =
     let rec connect_layers = function
