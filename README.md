@@ -7,7 +7,7 @@ NeuralNetwork is a simple OCaml library that I'm coding for the fun and to exper
 
 ## Make a new network by hand
 
-The library allows you to make a new network, add new neurons inside and connect them by hand :
+The library allows you to make a new network, add new neurons inside and connect them by hand:
 
 ```ocaml
 open NeuralNetwork
@@ -27,15 +27,15 @@ connect network n2 n3;
 
 ## Make a new network and add layers
 
-It is possible to add several layer to an existing neural network. For example, if we want to add 3 layers that have respectively 2, 4 and 1 neuron:
+It is possible to add several layer to an existing neural network. For example, if we want to add 3 layers that have respectively 2, 4 and 1 neurons:
 
 ```ocaml
 add_layers network [2; 4; 1]
 ```
 
-Each neurons of the first layer will be automatically connected to the neuron of the second layer. The same for the neurons of the second layer and the last one.
+Each neurons of the first layer will be automatically connected to the neurons of the second layer. The same for the neurons of the second layer and the last one.
 
-Warning: the granularity of this library is the neuron, nothing else! So, a layer has no concrete existence in the network. It's just a collection of neuron id. In fact, this changes nothing.
+Warning: the granularity of this library is the neuron, nothing else! So, a layer has no concrete existence in the network. In fact, this changes nothing.
 
 
 ## Make a new layered network
