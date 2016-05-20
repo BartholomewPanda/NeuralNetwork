@@ -10,9 +10,9 @@ open Backpropagation
 let trainset =
     [
         [0.0; 0.0], [0.0];
-        [0.0; 1.0], [0.0];
-        [1.0; 0.0], [0.0];
-        [1.0; 1.0], [1.0]
+        [0.0; 1.0], [1.0];
+        [1.0; 0.0], [1.0];
+        [1.0; 1.0], [0.0]
     ]
 
 
@@ -25,7 +25,7 @@ begin
     (* The network will contain 2 input neurons (the neurons 0 and 1), 4 hidden neurons (2, 3, 4, 5) and 1 output neuron (the neuron 6) *)
 
     (* LEARN MY LITTLE BRAIN! *)
-    for i = 0 to 500 do
+    for i = 0 to 1000 do
         (* [0; 1] are the id of input neurons and [6] the id of the output neuron *)
         train network trainset [0; 1] [6] 0.8
     done;
