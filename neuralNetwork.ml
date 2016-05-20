@@ -150,8 +150,8 @@ let backpropagation network outputs target =
     let rec backpropagation l =
         let l = List.filter (fun id -> get_inputs network id <> []) l in
         match l with
-        | []    -> ()
-        | layer -> List.iter (compute_error network) layer;
+            | []    -> ()
+            | layer -> List.iter (compute_error network) layer;
                    backpropagation (previous_layer network layer)
     in
     (* set the output error *)
