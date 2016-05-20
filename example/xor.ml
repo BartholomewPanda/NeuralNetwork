@@ -19,7 +19,7 @@ begin
 
     (* We use the make_layered_network helper function that allows to easily make a multi layered network *)
     let network = make_layered_network [2; 4; 1] in
-    (* The network will contain 2 input neurons (the neurons 0 and 1) and 1 output neuron (the neuron 6) *)
+    (* The network will contain 2 input neurons (the neurons 0 and 1), 4 hidden neurons (2, 3, 4, 5) and 1 output neuron (the neuron 6) *)
 
     (* LEARN MY LITTLE BRAIN! *)
     for i = 0 to 500 do
