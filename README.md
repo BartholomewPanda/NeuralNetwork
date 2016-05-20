@@ -75,7 +75,7 @@ The second argument is a list of the input neurons.
 
 The third argument is a list of the value of each input neurons.
 
-This function returns a list of tuple. These tuple contains the two elements: the output neuron and its output value. For example, if we have two outputs neurons in the network (no1 and no2), the return value of the `feedforward` function might be:
+This function returns a list of tuple. These tuple contains two elements: the output neuron and its output value. For example, if we have two outputs neurons in the network (no1 and no2), the return value of the `feedforward` function might be:
 
 ```ocaml
 [(no1, 3.45); (no2, 6.12)]
