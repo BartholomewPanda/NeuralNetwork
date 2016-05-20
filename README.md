@@ -48,11 +48,11 @@ make_layered_network [2; 4; 1]
 
 ## How to use the backpropagation algorithm
 
-To train your network, the library provides a simple implementation of the backpropagation algorithm. Here is an example:
+To train your network, the library provides a simple implementation of the backpropagation algorithm in the module Backpropagation. Here is an example:
 
 ```ocaml
 for i = 0 to 500 do
-    train network [[0.0; 0.0], [0.0]; [1.0; 1.0], [1.0]] [n1; n2] [n3]
+    Backpropagation.train network [[0.0; 0.0], [0.0]; [1.0; 1.0], [1.0]] [n1; n2] [n3]
 done
 ```
 

@@ -3,6 +3,8 @@
 
 
 open NeuralNetwork
+open Backpropagation
+
 
 (* The trainset contains a list of (inputs, expected output) of the XOR function *)
 let trainset =
@@ -12,6 +14,7 @@ let trainset =
         [1.0; 0.0], [0.0];
         [1.0; 1.0], [1.0]
     ]
+
 
 let test =
 begin
@@ -43,4 +46,5 @@ begin
     Printf.printf "1 ^ 0 = %f\n" result_1_0;
     Printf.printf "0 ^ 1 = %f\n" result_0_1;
     Printf.printf "1 ^ 1 = %f\n" result_1_1;
+
 end
