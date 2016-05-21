@@ -93,6 +93,11 @@ For more example, you can go in the *examples* directory ;).
 - a ton of issues
 
 
+# In progress...
+
+- try to make a generic genetic algorithm to train the network: you can see the code on the git branch *genetic*
+
+
 # TODO
 
 - look the code, work and remove the TODO in the code
@@ -100,7 +105,6 @@ For more example, you can go in the *examples* directory ;).
 - add new examples
 - batch backpropagation
 - give the possibility to use another function than sigmoid for each neuron
-- try to make a generic genetic algorithm to train the network
 - optimize the code
 - remove the `input` field of the neuron type (the weights hashtbl already store them)
 - (insert many things here)
