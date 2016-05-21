@@ -20,6 +20,9 @@ module IntSet = Set.Make
         let compare = compare
     end)
 
+let display n =
+    Printf.printf "Weights:\n";
+    Hashtbl.iter (fun id n -> Printf.printf "%d:\n" id; Hashtbl.iter (Printf.printf "  - %d: %f\n") n.weights) n.neurons
 
 (** Make a new neuron.
    @return a neuron
@@ -32,6 +35,14 @@ let make_neuron () =
  *)
 let make_network () =
     {neurons = Hashtbl.create 10; next_id = 0}
+
+let copy_neuron neuron =
+    {neuron with weights = Hashtbl.copy neuron.weights}
+
+let copy_network network =
+    let new_neurons = Hashtbl.create 10 in
+    Hashtbl.iter (fun id n -> Hashtbl.replace new_neurons id (copy_neuron n)) network.neurons;
+    {network with neurons = new_neurons}
 
 (** Get a neuron by its id.
    @return a neuron
