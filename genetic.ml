@@ -70,7 +70,7 @@ struct
             end
         in
         switch_neurons 0;
-        (c1, c2)
+        [c1; c2]
 
     (** TODO: cut and splice, uniform crossover *)
 
@@ -110,24 +110,28 @@ end
 
 module Population =
 struct
+
+    (** Just call the breeding function and add children + parents in the new population. *)
+    let make_new_population breeding mutation population_size population =
+        let rec make parents children nb =
+            if nb < population_size then
+                match parents with
+                    | mother :: father :: tl ->
+                        let new_children = breeding mother father in
+                        List.iter mutation new_children;
+                        make tl ((mother :: father :: new_children) @ children) (nb + 4)
+                    | _ -> children
+            else
+                children
+        in
+        make population [] 0
+
+    (** TODO: implementation of other new population making strategy *)
+
 end
 
-let make_new_population breeding mutation population_size population =
-    let rec make parents children nb =
-        if nb < population_size then
-            match parents with
-                | mother :: father :: tl ->
-                    let c1, c2 = breeding mother father in
-                    mutation c1;
-                    mutation c2;
-                    make tl (mother :: father :: c1 :: c2 :: children) (nb + 4)
-                | _ -> children
-        else
-            children
-    in
-    make population [] 0
 
-let rec genetic fitness select breeding mutation finished population_size population =
+let rec genetic fitness select breeding mutation make_population finished population_size population =
     let population =
         population
         |> List.map (fun indiv -> indiv, fitness indiv)
@@ -138,13 +142,13 @@ let rec genetic fitness select breeding mutation finished population_size popula
     else
         population
         |> select population_size
-        |> make_new_population breeding mutation population_size
-        |> genetic fitness select breeding mutation finished population_size
+        |> make_population breeding mutation population_size
+        |> genetic fitness select breeding mutation make_population finished population_size
 
 
-let train network randomize fitness select breeding mutation finished population_size =
+let train network randomize fitness select breeding mutation make_population finished population_size =
     let population = Utils.list_apply (fun _ -> copy_network network) population_size in
     List.iter randomize population;
-    genetic fitness select breeding mutation finished population_size population
+    genetic fitness select breeding mutation make_population finished population_size population
 
 

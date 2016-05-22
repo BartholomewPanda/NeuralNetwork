@@ -30,6 +30,7 @@ begin
             Selection.simple_select
             Breeding.one_point_crossover
             (Mutation.weights_random_mutation 0.3)
+            Population.make_new_population
             (debug (Finished.finished 0.000001))
             100
     in
