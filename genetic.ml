@@ -1,4 +1,7 @@
 
+(** This module implements many common genetic operators. *)
+
+
 open NeuralNetwork
 
 
@@ -25,8 +28,8 @@ module Fitness =
 struct
 
     (** Apply the trainset, compute the errors for each entry of the trainset
-       and return the greatest one. TODO: find an other name to this function. *)
-    let simple_fitness trainset indiv =
+       and return the greatest one. *)
+    let greatest_error trainset indiv =
         trainset
         |> List.map (fun (inputs, target) ->
             let _, result = List.hd (feedforward indiv [0; 1] inputs) in
@@ -34,7 +37,13 @@ struct
         |> List.sort (fun f1 f2 -> compare f1 f2 * -1)
         |> List.hd
 
-    (** TODO: sum of the errors *)
+    (** Return the sum of the errors. *)
+    let error_sum trainset indiv =
+        List.fold_left
+            (fun acc (inputs, target) ->
+                let _, result = List.hd (feedforward indiv [0; 1] inputs) in
+                abs_float (result -. target) +. acc)
+            trainset
 
 end
 
