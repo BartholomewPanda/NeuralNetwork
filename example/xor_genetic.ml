@@ -26,12 +26,12 @@ begin
     let population =
         train network
             Randomizer.weights_randomizer
-            (Fitness.simple_fitness trainset)
+            (Fitness.greatest_error trainset)
             Selection.simple_select
             Breeding.one_point_crossover
             (Mutation.weights_random_mutation 0.3)
             Population.make_new_population
-            (debug (Finished.finished 0.000001))
+            (debug (Finished.finished 0.0000001))
             100
     in
     let best, _    = List.hd population in
