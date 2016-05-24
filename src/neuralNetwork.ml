@@ -152,7 +152,7 @@ let add_neurons network nb =
         if nb <= 0 then result
         else make (nb - 1) (add_neuron network :: result)
     in
-    make nb []
+    List.rev (make nb [])
 
 (** Helper function that make new layers and interconnects each layer.
    @param layers a int list
