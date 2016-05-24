@@ -29,6 +29,7 @@ struct
 
     (** Apply the trainset, compute the errors for each entry of the trainset
        and return the greatest one. *)
+    (** TODO: multi outputs *)
     let greatest_error trainset indiv =
         trainset
         |> List.map (fun (inputs, target) ->
