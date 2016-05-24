@@ -157,23 +157,24 @@ let add_neurons network nb =
 (** Helper function that make new layers and interconnects each layer.
    @param layers a int list
    @return a list of the id of each new neurons
-   TODO: the line above lies...
  *)
 let add_layers network layers =
+    let layers = List.map (add_neurons network) layers in
     let rec connect_layers = function
         | l1 :: (l2 :: tl as next_layers) ->
             List.iter (fun id1 -> List.iter (fun id2 -> connect network id1 id2) l2) l1;
             connect_layers next_layers
         | _ -> ()
     in
-    connect_layers (List.map (add_neurons network) layers)
+    connect_layers layers;
+    layers
 
 (** Helper function that make a new layered network.
    @param layers the description of each layer (the number of neuron)
-   @return a new initialized network
+   @return a tuple of (new initialized network, layers)
  *)
 let make_layered_network layers =
     let network = make_network () in
-    add_layers network layers;
-    network
+    let layers = add_layers network layers in
+    (network, layers)
 

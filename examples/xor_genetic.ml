@@ -23,7 +23,7 @@ begin
     Random.self_init ();
 
     (** Here we make a new multi layered network with two inputs, four hidden neurons and one output. *)
-    let network    = make_layered_network [2; 4; 1] in
+    let network, _ = make_layered_network [2; 4; 1] in
     (** We call the train function from the Genetic module. This one allows to train a neural network by using
        a genetic algorithm. Each of its arguments is a function called by the algorithm. *)
     let population =
